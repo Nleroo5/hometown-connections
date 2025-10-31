@@ -1,0 +1,40 @@
+{
+  "name": "hometown-connections",
+  "version": "1.0.0",
+  "description": "Hometown Connections Website - Utility Solutions for Public Power",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "utility",
+    "public-power",
+    "municipal-utilities"
+  ],
+  "author": "Hometown Connections",
+  "license": "ISC",
+  "dependencies": {
+    "@portabletext/react": "^4.0.3",
+    "@sanity/client": "^7.12.0",
+    "@sanity/image-url": "^1.2.0",
+    "@sanity/vision": "^4.12.0",
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/node": "^24.9.2",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "autoprefixer": "^10.4.21",
+    "dotenv": "^17.2.3",
+    "next": "^14.2.33",
+    "next-sanity": "^11.6.2",
+    "postcss": "^8.5.6",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sanity": "^4.12.0",
+    "styled-components": "^6.1.19",
+    "tailwindcss": "^3.4.18",
+    "typescript": "^5.9.3"
+  }
+}
