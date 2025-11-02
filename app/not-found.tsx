@@ -1,14 +1,10 @@
 import Link from 'next/link'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 
 export default function NotFound() {
   return (
     <>
-      <Header />
-      <main className="pt-20">
         <section className="section min-h-[70vh] flex items-center">
           <Container>
             <div className="max-w-2xl mx-auto text-center">
@@ -73,8 +69,6 @@ export default function NotFound() {
             </div>
           </Container>
         </section>
-      </main>
-      <Footer />
     </>
   )
 }

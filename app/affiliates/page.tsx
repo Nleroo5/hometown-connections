@@ -1,7 +1,5 @@
 import { client } from '@/lib/sanity.client'
 import { Metadata } from 'next'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 
@@ -86,9 +84,7 @@ export default async function AffiliatesPage() {
 
   return (
     <>
-      <Header />
-      <main className="pt-20">
-        {/* Hero Section */}
+      {/* Hero Section */}
         <section className="relative bg-gradient-primary text-white pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
@@ -99,10 +95,10 @@ export default async function AffiliatesPage() {
 
           <Container className="relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in text-white">
                 Our Affiliates
               </h1>
-              <p className="text-xl md:text-2xl text-white/90 mb-10 leading-relaxed animate-fade-in">
+              <p className="text-xl md:text-2xl text-white mb-10 leading-relaxed animate-fade-in">
                 Connect with Hometown Connections affiliates across the United States. Our network of trusted partners delivers expertise and local knowledge.
               </p>
 
@@ -112,7 +108,7 @@ export default async function AffiliatesPage() {
                   <div className="text-4xl md:text-5xl font-bold text-secondary mb-2">
                     {affiliates.length}
                   </div>
-                  <div className="text-white/80 text-sm md:text-base">
+                  <div className="text-white text-sm md:text-base">
                     Total Affiliates
                   </div>
                 </div>
@@ -120,7 +116,7 @@ export default async function AffiliatesPage() {
                   <div className="text-4xl md:text-5xl font-bold text-secondary mb-2">
                     {sortedStates.length}
                   </div>
-                  <div className="text-white/80 text-sm md:text-base">
+                  <div className="text-white text-sm md:text-base">
                     States Served
                   </div>
                 </div>
@@ -128,7 +124,7 @@ export default async function AffiliatesPage() {
                   <div className="text-4xl md:text-5xl font-bold text-secondary mb-2">
                     {affiliates.filter(a => a.isCoOwner).length}
                   </div>
-                  <div className="text-white/80 text-sm md:text-base">
+                  <div className="text-white text-sm md:text-base">
                     Co-owners
                   </div>
                 </div>
@@ -203,9 +199,6 @@ export default async function AffiliatesPage() {
                       <h2 className="text-3xl md:text-4xl font-bold text-primary">
                         {STATE_NAMES[stateCode] || stateCode}
                       </h2>
-                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
-                        {affiliatesByState[stateCode].length} {affiliatesByState[stateCode].length === 1 ? 'Affiliate' : 'Affiliates'}
-                      </span>
                     </div>
                     <div className="h-1 w-20 bg-gradient-to-r from-secondary to-accent rounded-full" />
                   </div>
@@ -305,7 +298,7 @@ export default async function AffiliatesPage() {
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 Interested in Becoming an Affiliate?
               </h2>
-              <p className="text-xl text-white/90 mb-8">
+              <p className="text-xl text-white mb-8">
                 Join our network of trusted partners and help us empower community-owned utilities across the nation.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -329,8 +322,6 @@ export default async function AffiliatesPage() {
             </div>
           </Container>
         </section>
-      </main>
-      <Footer />
     </>
   )
 }

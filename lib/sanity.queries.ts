@@ -169,7 +169,12 @@ export const TEAM_QUERY = `*[_type == "teamMember" && showOnTeamPage == true] | 
   name,
   role,
   department,
-  photo,
+  photo{
+    asset->{
+      _id,
+      url
+    }
+  },
   bio,
   email,
   phone,
@@ -182,7 +187,12 @@ export const BOARD_QUERY = `*[_type == "teamMember" && department == "board"] | 
   _id,
   name,
   role,
-  photo,
+  photo{
+    asset->{
+      _id,
+      url
+    }
+  },
   order
 }`
 

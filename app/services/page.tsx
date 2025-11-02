@@ -2,8 +2,6 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { getAllServices } from '@/lib/sanity.queries'
 import Container from '@/components/ui/Container'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
 
 export const metadata: Metadata = {
   title: 'Utility Solutions & Services | Hometown Connections',
@@ -34,8 +32,6 @@ export default async function ServicesPage() {
 
   return (
     <>
-      <Header />
-      <main className="min-h-screen pt-20">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary via-primary/95 to-primary/90 text-white py-20">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
@@ -44,7 +40,7 @@ export default async function ServicesPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Utility Solutions
             </h1>
-            <p className="text-xl text-blue-100">
+            <p className="text-xl text-white">
               Comprehensive services designed for the unique challenges of community-owned utilities
             </p>
           </div>
@@ -55,25 +51,25 @@ export default async function ServicesPage() {
               <div className="text-3xl md:text-4xl font-bold text-secondary mb-2">
                 25+
               </div>
-              <div className="text-blue-100">Years Experience</div>
+              <div className="text-white">Years Experience</div>
             </div>
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-secondary mb-2">
                 8
               </div>
-              <div className="text-blue-100">Service Categories</div>
+              <div className="text-white">Service Categories</div>
             </div>
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-secondary mb-2">
                 25
               </div>
-              <div className="text-blue-100">Affiliate Partners</div>
+              <div className="text-white">Affiliate Partners</div>
             </div>
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-secondary mb-2">
                 100%
               </div>
-              <div className="text-blue-100">Public Power Focus</div>
+              <div className="text-white">Public Power Focus</div>
             </div>
           </div>
         </Container>
@@ -180,7 +176,7 @@ export default async function ServicesPage() {
             <h2 className="text-3xl font-bold mb-4">
               Ready to Transform Your Utility?
             </h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
               Let's discuss how our solutions can help your community-owned utility succeed in today's evolving energy landscape.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -200,8 +196,6 @@ export default async function ServicesPage() {
           </div>
         </Container>
       </section>
-    </main>
-    <Footer />
     </>
   )
 }

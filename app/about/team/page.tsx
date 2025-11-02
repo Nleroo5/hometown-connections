@@ -1,8 +1,6 @@
 import { Metadata } from 'next'
 import { getTeamMembers } from '@/lib/sanity.queries'
 import Container from '@/components/ui/Container'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
 
 export const metadata: Metadata = {
   title: 'Our Team | Hometown Connections',
@@ -22,18 +20,16 @@ export default async function TeamPage() {
 
   return (
     <>
-      <Header />
-      <main className="min-h-screen pt-20">
       {/* Hero Section */}
       <section className="relative bg-gradient-futuristic text-white py-20">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
         <Container className="relative">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
               Our Team
             </h1>
-            <p className="text-xl text-gray-200">
-              Meet the dedicated professionals helping community-owned utilities succeed across the nation
+            <p className="text-xl text-white leading-relaxed">
+              Hometown Connections relies on dedicated staff as well as affiliated joint action agencies, state associations, and other industry professionals to connect a community-owned utility with the information and solutions it needs to succeed.
             </p>
           </div>
         </Container>
@@ -49,7 +45,7 @@ export default async function TeamPage() {
                 className="text-center group"
               >
                 {/* Photo */}
-                <div className="mb-4 overflow-hidden rounded-lg aspect-square bg-gray-100 border-2 border-gray-200 group-hover:border-secondary/30 transition-all">
+                <div className="mb-4 overflow-hidden rounded-full aspect-square bg-gray-100 border-2 border-gray-200 group-hover:border-secondary/30 transition-all">
                   {member.photo?.asset?.url ? (
                     <img
                       src={member.photo.asset.url}
@@ -102,7 +98,7 @@ export default async function TeamPage() {
             <h2 className="text-3xl font-bold mb-4">
               Want to Work With Us?
             </h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
               Our team is here to help your community-owned utility succeed. Get in touch to learn how we can support your organization.
             </p>
             <a
@@ -114,8 +110,6 @@ export default async function TeamPage() {
           </div>
         </Container>
       </section>
-    </main>
-    <Footer />
     </>
   )
 }

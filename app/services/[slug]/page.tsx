@@ -3,8 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getService, getAllServices } from '@/lib/sanity.queries'
 import Container from '@/components/ui/Container'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+import { PortableText } from '@portabletext/react'
 
 interface Props {
   params: { slug: string }
@@ -27,9 +26,51 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${service.title} | Hometown Connections`,
+    title: service.seoTitle || `${service.title} | Hometown Connections`,
     description: service.seoDescription || service.shortDescription,
   }
+}
+
+// Portable Text components for rendering
+const portableTextComponents = {
+  block: {
+    h2: ({ children }: any) => (
+      <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-12 mb-6 first:mt-0">
+        {children}
+      </h2>
+    ),
+    h3: ({ children }: any) => (
+      <h3 className="text-xl md:text-2xl font-bold text-gray-900 mt-8 mb-4">
+        {children}
+      </h3>
+    ),
+    h4: ({ children }: any) => (
+      <h4 className="text-lg md:text-xl font-bold text-gray-900 mt-6 mb-3">
+        {children}
+      </h4>
+    ),
+    normal: ({ children }: any) => (
+      <p className="text-gray-700 leading-relaxed mb-6">
+        {children}
+      </p>
+    ),
+  },
+  list: {
+    bullet: ({ children }: any) => (
+      <ul className="list-disc list-inside space-y-2 mb-6 text-gray-700">
+        {children}
+      </ul>
+    ),
+    number: ({ children }: any) => (
+      <ol className="list-decimal list-inside space-y-2 mb-6 text-gray-700">
+        {children}
+      </ol>
+    ),
+  },
+  listItem: {
+    bullet: ({ children }: any) => <li className="ml-4">{children}</li>,
+    number: ({ children }: any) => <li className="ml-4">{children}</li>,
+  },
 }
 
 export default async function ServicePage({ params }: Props) {
@@ -41,20 +82,18 @@ export default async function ServicePage({ params }: Props) {
 
   return (
     <>
-      <Header />
-      <main className="min-h-screen pt-20">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary via-primary/95 to-primary/90 text-white py-20">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
         <Container className="relative">
           {/* Breadcrumb */}
           <div className="mb-6">
-            <div className="flex items-center gap-2 text-blue-200 text-sm">
-              <Link href="/" className="hover:text-white transition-colors">
+            <div className="flex items-center gap-2 text-white text-sm">
+              <Link href="/" className="hover:text-secondary transition-colors">
                 Home
               </Link>
               <span>/</span>
-              <Link href="/services" className="hover:text-white transition-colors">
+              <Link href="/services" className="hover:text-secondary transition-colors">
                 Services
               </Link>
               <span>/</span>
@@ -63,10 +102,10 @@ export default async function ServicePage({ params }: Props) {
           </div>
 
           <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
               {service.title}
             </h1>
-            <p className="text-xl text-blue-100">
+            <p className="text-xl text-white leading-relaxed">
               {service.shortDescription}
             </p>
           </div>
@@ -79,17 +118,29 @@ export default async function ServicePage({ params }: Props) {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2">
+              {/* Full Description */}
+              {service.fullDescription && (
+                <div className="mb-12">
+                  <div className="text-gray-700">
+                    <PortableText
+                      value={service.fullDescription}
+                      components={portableTextComponents}
+                    />
+                  </div>
+                </div>
+              )}
+
               {/* Key Benefits */}
               {service.keyBenefits && service.keyBenefits.length > 0 && (
                 <div className="mb-12">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
                     Key Benefits
                   </h2>
                   <div className="grid gap-4">
                     {service.keyBenefits.map((benefit: string, index: number) => (
                       <div
                         key={index}
-                        className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors"
+                        className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors border border-gray-100"
                       >
                         <div className="flex-shrink-0 w-6 h-6 bg-secondary rounded-full flex items-center justify-center mt-0.5">
                           <svg
@@ -106,24 +157,9 @@ export default async function ServicePage({ params }: Props) {
                             />
                           </svg>
                         </div>
-                        <p className="text-gray-700 flex-1">{benefit}</p>
+                        <p className="text-gray-700 flex-1 leading-relaxed">{benefit}</p>
                       </div>
                     ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Full Description */}
-              {service.fullDescription && (
-                <div className="mb-12 prose prose-lg max-w-none">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                    Overview
-                  </h2>
-                  <div className="text-gray-700 leading-relaxed">
-                    {/* This would be rendered with PortableText in a real implementation */}
-                    <p>
-                      For detailed information about this service, please contact our team.
-                    </p>
                   </div>
                 </div>
               )}
@@ -131,7 +167,7 @@ export default async function ServicePage({ params }: Props) {
               {/* Related Partners */}
               {service.relatedPartners && service.relatedPartners.length > 0 && (
                 <div className="mb-12">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
                     Our Partners for This Service
                   </h2>
                   <div className="grid gap-4">
@@ -139,10 +175,10 @@ export default async function ServicePage({ params }: Props) {
                       <Link
                         key={partner.slug.current}
                         href={`/partners/${partner.slug.current}`}
-                        className="flex items-center gap-6 p-6 bg-gray-50 rounded-lg hover:shadow-md transition-shadow"
+                        className="flex items-center gap-6 p-6 bg-gray-50 rounded-xl hover:shadow-lg transition-all border border-gray-100 group"
                       >
                         {partner.logo && (
-                          <div className="w-24 h-24 flex-shrink-0">
+                          <div className="w-24 h-24 flex-shrink-0 bg-white rounded-lg p-2">
                             <img
                               src={partner.logo.asset?.url}
                               alt={partner.companyName}
@@ -151,7 +187,7 @@ export default async function ServicePage({ params }: Props) {
                           </div>
                         )}
                         <div className="flex-1">
-                          <h3 className="text-xl font-bold text-gray-900 mb-2">
+                          <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">
                             {partner.companyName}
                           </h3>
                           {partner.description && (
@@ -161,7 +197,7 @@ export default async function ServicePage({ params }: Props) {
                           )}
                         </div>
                         <svg
-                          className="w-6 h-6 text-primary flex-shrink-0"
+                          className="w-6 h-6 text-primary flex-shrink-0 group-hover:translate-x-1 transition-transform"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -183,16 +219,16 @@ export default async function ServicePage({ params }: Props) {
             {/* Sidebar */}
             <div className="lg:col-span-1">
               {/* CTA Card */}
-              <div className="bg-gradient-to-br from-primary to-primary/90 text-white p-8 rounded-xl shadow-lg sticky top-24">
-                <h3 className="text-2xl font-bold mb-4">
+              <div className="bg-gradient-to-br from-primary to-primary/90 text-white p-8 rounded-xl shadow-xl sticky top-24">
+                <h3 className="text-2xl font-bold mb-4 text-white">
                   Interested in This Service?
                 </h3>
-                <p className="text-blue-100 mb-6">
+                <p className="text-white mb-6 leading-relaxed">
                   Let's discuss how we can help your utility succeed with {service.title.toLowerCase()}.
                 </p>
                 <a
                   href="/contact"
-                  className="block w-full bg-white text-primary text-center px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors mb-4"
+                  className="block w-full bg-white text-primary text-center px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors mb-4 shadow-md"
                 >
                   Contact Us
                 </a>
@@ -207,8 +243,34 @@ export default async function ServicePage({ params }: Props) {
           </div>
         </Container>
       </section>
-    </main>
-    <Footer />
+
+      {/* CTA Section */}
+      <section className="py-16 bg-gray-50">
+        <Container>
+          <div className="bg-gradient-to-r from-primary to-primary/90 rounded-2xl p-12 text-center text-white shadow-xl">
+            <h2 className="text-3xl font-bold mb-4 text-white">
+              Ready to Get Started?
+            </h2>
+            <p className="text-xl text-white mb-8 max-w-2xl mx-auto leading-relaxed">
+              Contact us today to learn more about our {service.title.toLowerCase()} solutions and how we can support your utility.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/contact"
+                className="inline-block bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors shadow-md"
+              >
+                Contact Us
+              </a>
+              <a
+                href="/affiliates"
+                className="inline-block bg-primary/20 backdrop-blur-sm border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors"
+              >
+                Find an Affiliate
+              </a>
+            </div>
+          </div>
+        </Container>
+      </section>
     </>
   )
 }

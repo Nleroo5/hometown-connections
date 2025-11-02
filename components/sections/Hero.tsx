@@ -46,7 +46,7 @@ export default function Hero({
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-white/90 mb-10 leading-relaxed animate-fade-in">
+          <p className="text-xl md:text-2xl text-white mb-10 leading-relaxed animate-fade-in">
             {subtitle}
           </p>
 
@@ -81,7 +81,7 @@ export default function Hero({
                 <div className="text-4xl md:text-5xl font-bold text-gradient-accent mb-2">
                   {stat.value}
                 </div>
-                <div className="text-white/80 text-sm md:text-base">
+                <div className="text-white text-sm md:text-base">
                   {stat.label}
                 </div>
               </div>

@@ -2,6 +2,8 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { getSiteSettings } from '@/lib/sanity.queries'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -67,15 +69,21 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const settings = await getSiteSettings()
+
   return (
     <html lang="en" className={inter.variable}>
       <body className={inter.className}>
-        {children}
+        <Header siteSettings={settings} />
+        <main className="min-h-screen pt-20">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   )
