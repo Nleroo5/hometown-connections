@@ -23,7 +23,7 @@ export default async function PartnersPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary via-primary/95 to-primary/90 text-white py-20">
+      <section className="relative bg-gradient-to-br from-primary via-primary/95 to-primary/90 text-white pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
         <Container className="relative">
           <div className="max-w-3xl mx-auto text-center">
@@ -48,11 +48,11 @@ export default async function PartnersPage() {
                 className="group p-6 bg-white border-2 border-gray-200 rounded-xl hover:border-secondary hover:shadow-xl transition-all duration-300"
               >
                 {/* Partner Logo Placeholder */}
-                {partner.logo ? (
+                {partner.logo?.asset?.url ? (
                   <div className="mb-4 h-20 flex items-center justify-center">
                     <img
-                      src={partner.logo.asset?.url}
-                      alt={partner.companyName}
+                      src={partner.logo.asset.url}
+                      alt={partner.logo.alt || partner.companyName}
                       className="max-h-20 w-auto object-contain"
                     />
                   </div>

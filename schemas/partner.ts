@@ -39,23 +39,6 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'category',
-      title: 'Category',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'Technology', value: 'technology' },
-          { title: 'Consulting', value: 'consulting' },
-          { title: 'Software', value: 'software' },
-          { title: 'Hardware', value: 'hardware' },
-          { title: 'Cybersecurity', value: 'cybersecurity' },
-          { title: 'Training', value: 'training' },
-          { title: 'Other', value: 'other' },
-        ],
-      },
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
       name: 'description',
       title: 'Description',
       type: 'text',
@@ -97,13 +80,100 @@ export default defineType({
     }),
     defineField({
       name: 'contactPerson',
-      title: 'Contact Person',
+      title: 'Primary Contact Person',
       type: 'object',
       fields: [
         { name: 'name', type: 'string', title: 'Name' },
+        { name: 'title', type: 'string', title: 'Job Title' },
         { name: 'email', type: 'string', title: 'Email' },
         { name: 'phone', type: 'string', title: 'Phone' },
+        { name: 'photo', type: 'image', title: 'Photo' },
       ],
+    }),
+    defineField({
+      name: 'additionalContacts',
+      title: 'Additional Contact Persons',
+      type: 'array',
+      of: [{
+        type: 'object',
+        fields: [
+          { name: 'name', type: 'string', title: 'Name' },
+          { name: 'title', type: 'string', title: 'Job Title' },
+          { name: 'email', type: 'string', title: 'Email' },
+          { name: 'phone', type: 'string', title: 'Phone' },
+        ],
+      }],
+    }),
+    defineField({
+      name: 'companyAddress',
+      title: 'Company Address',
+      type: 'text',
+      rows: 3,
+    }),
+    defineField({
+      name: 'tagline',
+      title: 'Tagline/Subtitle',
+      type: 'string',
+      description: 'Optional tagline displayed under company name',
+    }),
+    defineField({
+      name: 'keyFeatures',
+      title: 'Key Features/Highlights',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'Bullet points of key features or highlights',
+    }),
+    defineField({
+      name: 'testimonials',
+      title: 'Client Testimonials',
+      type: 'array',
+      of: [{
+        type: 'object',
+        fields: [
+          { name: 'quote', type: 'text', title: 'Quote' },
+          { name: 'author', type: 'string', title: 'Author Name' },
+          { name: 'authorTitle', type: 'string', title: 'Author Title' },
+          { name: 'company', type: 'string', title: 'Company' },
+        ],
+      }],
+    }),
+    defineField({
+      name: 'resources',
+      title: 'Resources & Downloads',
+      type: 'array',
+      of: [{
+        type: 'object',
+        fields: [
+          { name: 'title', type: 'string', title: 'Resource Title' },
+          { name: 'type', type: 'string', title: 'Type', options: { list: ['PDF', 'Video', 'Link', 'Webinar', 'Case Study'] } },
+          { name: 'url', type: 'url', title: 'URL' },
+        ],
+      }],
+    }),
+    defineField({
+      name: 'clients',
+      title: 'Client List',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'List of notable clients or municipalities served',
+    }),
+    defineField({
+      name: 'statistics',
+      title: 'Key Statistics',
+      type: 'array',
+      of: [{
+        type: 'object',
+        fields: [
+          { name: 'value', type: 'string', title: 'Statistic Value' },
+          { name: 'label', type: 'string', title: 'Statistic Label' },
+        ],
+      }],
+    }),
+    defineField({
+      name: 'videoUrl',
+      title: 'Featured Video URL',
+      type: 'url',
+      description: 'YouTube or other video embed URL',
     }),
     defineField({
       name: 'partnerSince',
@@ -115,7 +185,7 @@ export default defineType({
   preview: {
     select: {
       title: 'companyName',
-      subtitle: 'category',
+      subtitle: 'description',
       media: 'logo',
     },
   },

@@ -125,14 +125,56 @@ export const PARTNERS_QUERY = `*[_type == "partner"] | order(companyName asc) {
   _id,
   companyName,
   slug,
-  logo,
-  category,
+  logo{
+    asset->{
+      _id,
+      url
+    },
+    alt
+  },
   description,
   featured
 }`
 
 // Single partner
-export const PARTNER_QUERY = `*[_type == "partner" && slug.current == $slug][0]`
+export const PARTNER_QUERY = `*[_type == "partner" && slug.current == $slug][0]{
+  _id,
+  companyName,
+  slug,
+  logo{
+    asset->{
+      _id,
+      url
+    },
+    alt
+  },
+  description,
+  fullDescription,
+  website,
+  servicesProvided,
+  contactPerson{
+    name,
+    title,
+    email,
+    phone,
+    photo{
+      asset->{
+        _id,
+        url
+      }
+    }
+  },
+  additionalContacts,
+  companyAddress,
+  tagline,
+  keyFeatures,
+  testimonials,
+  resources,
+  clients,
+  statistics,
+  videoUrl,
+  partnerSince
+}`
 
 // All events
 export const EVENTS_QUERY = `*[_type == "event"] | order(startDate desc) {

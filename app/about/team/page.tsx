@@ -21,7 +21,7 @@ export default async function TeamPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-gradient-futuristic text-white py-20">
+      <section className="relative bg-gradient-futuristic text-white pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
         <Container className="relative">
           <div className="max-w-3xl mx-auto text-center">
