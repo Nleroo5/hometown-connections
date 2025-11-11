@@ -6,8 +6,8 @@ import { schemaTypes } from './schemas'
 export default defineConfig({
   name: 'hometown-connections',
   title: 'Hometown Connections CMS',
-  projectId: '35wp30bx',
-  dataset: 'production',
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
   basePath: '/studio',
   plugins: [
     deskTool({

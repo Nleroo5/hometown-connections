@@ -3,12 +3,12 @@ import imageUrlBuilder from '@sanity/image-url'
 import { SanityImageSource } from '@sanity/image-url/lib/types/types'
 
 export const client = createClient({
-  projectId: '35wp30bx',
-  dataset: 'production',
-  apiVersion: '2024-01-01',
-  useCdn: false, // Disable CDN to always get fresh data
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+  apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION!,
+  useCdn: true, // Enable CDN for production performance
   perspective: 'published',
-  token: 'sk3Oo3K0LyCCcZWKJIKAFXpBDnh27e5Ytv0xZOrFMrKDkzrGSakmOr906pStURZQFfGFlqMgIOxEhqXF1YQM4hIyB5mtctcy6TY98dQqQlnPQYErsLU5X8v0Yx5gwnvHImUYgNojJB2kc1MiHOLqMxjiQu50NyMUbPGq1GVx7vtk3R2lY2v1',
+  token: process.env.SANITY_API_TOKEN,
 })
 
 const builder = imageUrlBuilder(client)

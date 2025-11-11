@@ -16,6 +16,8 @@ interface ButtonProps {
   fullWidth?: boolean
   icon?: React.ReactNode
   iconPosition?: 'left' | 'right'
+  target?: string
+  rel?: string
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -30,6 +32,8 @@ const Button: React.FC<ButtonProps> = ({
   fullWidth = false,
   icon,
   iconPosition = 'left',
+  target,
+  rel,
 }) => {
   const baseClasses = 'btn inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2'
 
@@ -66,7 +70,12 @@ const Button: React.FC<ButtonProps> = ({
 
   if (href && !disabled) {
     return (
-      <Link href={href} className={classes}>
+      <Link
+        href={href}
+        className={classes}
+        target={target}
+        rel={target === '_blank' ? 'noopener noreferrer' : rel}
+      >
         {content}
       </Link>
     )
