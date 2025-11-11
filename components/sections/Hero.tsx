@@ -1,5 +1,8 @@
+'use client'
+
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
+import CountUp from '@/components/ui/CountUp'
 
 interface HeroProps {
   title?: string
@@ -72,20 +75,32 @@ export default function Hero({
 
           {/* Stats */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 pt-8 border-t border-neon/30">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="text-center animate-fade-in"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="text-4xl md:text-5xl font-bold text-gradient-accent mb-2">
-                  {stat.value}
+            {stats.map((stat, index) => {
+              // Determine if this stat should have counting animation
+              const isUtilitiesServed = stat.label === 'Utilities Served'
+              const isYearsOfExcellence = stat.label === 'Years of Excellence'
+
+              return (
+                <div
+                  key={index}
+                  className="text-center animate-fade-in"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="text-4xl md:text-5xl font-bold text-gradient-accent mb-2">
+                    {isUtilitiesServed ? (
+                      <CountUp end={900} duration={2500} suffix="+" />
+                    ) : isYearsOfExcellence ? (
+                      <CountUp end={25} duration={2000} suffix="+" />
+                    ) : (
+                      stat.value
+                    )}
+                  </div>
+                  <div className="text-white text-sm md:text-base">
+                    {stat.label}
+                  </div>
                 </div>
-                <div className="text-white text-sm md:text-base">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </Container>
