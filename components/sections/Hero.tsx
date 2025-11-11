@@ -33,7 +33,7 @@ export default function Hero({
   ],
 }: HeroProps) {
   return (
-    <section className="relative bg-gradient-futuristic text-white pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+    <section className="relative bg-gradient-futuristic text-white pt-8 pb-20 sm:pt-12 md:pt-16 md:pb-28 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
@@ -74,7 +74,7 @@ export default function Hero({
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 pt-8 border-t border-neon/30">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 md:gap-12 pt-8 border-t border-neon/30">
             {stats.map((stat, index) => {
               // Determine if this stat should have counting animation
               const isUtilitiesServed = stat.label === 'Utilities Served'
@@ -88,9 +88,9 @@ export default function Hero({
                 >
                   <div className="text-4xl md:text-5xl font-bold text-gradient-accent mb-2">
                     {isUtilitiesServed ? (
-                      <CountUp end={900} duration={2500} suffix="+" />
+                      <CountUp end={900} duration={5000} suffix="+" />
                     ) : isYearsOfExcellence ? (
-                      <CountUp end={25} duration={2000} suffix="+" />
+                      <CountUp end={25} duration={3000} suffix="+" />
                     ) : (
                       stat.value
                     )}

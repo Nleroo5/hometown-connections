@@ -23,7 +23,7 @@ export default async function PartnersPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary via-primary/95 to-primary/90 text-white pt-32 pb-20 md:pt-40 md:pb-28">
+      <section className="relative bg-gradient-to-br from-primary via-primary/95 to-primary/90 text-white pt-8 pb-20 sm:pt-12 md:pt-16 md:pb-28">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
         <Container className="relative">
           <div className="max-w-3xl mx-auto text-center">

@@ -80,7 +80,7 @@ export default async function RootLayout({
     <html lang="en" className={inter.variable}>
       <body className={inter.className}>
         <Header siteSettings={settings} />
-        <main className="min-h-screen pt-20">
+        <main className="min-h-screen pt-24 sm:pt-28 md:pt-32 lg:pt-28">
           {children}
         </main>
         <Footer />

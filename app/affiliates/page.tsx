@@ -1,12 +1,7 @@
 import { client } from '@/lib/sanity.client'
-import { Metadata } from 'next'
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
-
-export const metadata: Metadata = {
-  title: 'Our Affiliates | Hometown Connections',
-  description: 'Find Hometown Connections affiliates across the United States. Connect with local experts who understand your community.',
-}
+import AffiliateStats from '@/components/sections/AffiliateStats'
 
 interface Contact {
   name: string
@@ -47,7 +42,7 @@ async function getAffiliates(): Promise<Affiliate[]> {
     description
   }`
 
-  return client.fetch(query, {}, { next: { revalidate: 3600 } })
+  return client.fetch(query)
 }
 
 // US State abbreviations to full names
@@ -81,11 +76,12 @@ export default async function AffiliatesPage() {
   })
 
   const sortedStates = Object.keys(affiliatesByState).sort()
+  const coOwnerCount = affiliates.filter(a => a.isCoOwner).length
 
   return (
     <>
       {/* Hero Section */}
-        <section className="relative bg-gradient-primary text-white pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+        <section className="relative bg-gradient-primary text-white pt-8 pb-20 sm:pt-12 md:pt-16 md:pb-28 overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0" style={{
@@ -103,32 +99,11 @@ export default async function AffiliatesPage() {
               </p>
 
               {/* Stats */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 pt-8">
-                <div className="text-center animate-fade-in">
-                  <div className="text-4xl md:text-5xl font-bold text-secondary mb-2">
-                    {affiliates.length}
-                  </div>
-                  <div className="text-white text-sm md:text-base">
-                    Total Affiliates
-                  </div>
-                </div>
-                <div className="text-center animate-fade-in" style={{ animationDelay: '100ms' }}>
-                  <div className="text-4xl md:text-5xl font-bold text-secondary mb-2">
-                    {sortedStates.length}
-                  </div>
-                  <div className="text-white text-sm md:text-base">
-                    States Served
-                  </div>
-                </div>
-                <div className="text-center animate-fade-in" style={{ animationDelay: '200ms' }}>
-                  <div className="text-4xl md:text-5xl font-bold text-secondary mb-2">
-                    {affiliates.filter(a => a.isCoOwner).length}
-                  </div>
-                  <div className="text-white text-sm md:text-base">
-                    Co-owners
-                  </div>
-                </div>
-              </div>
+              <AffiliateStats
+                totalAffiliates={affiliates.length}
+                statesServed={sortedStates.length}
+                coOwners={coOwnerCount}
+              />
             </div>
           </Container>
 
@@ -212,10 +187,10 @@ export default async function AffiliatesPage() {
                       >
                         {/* Header */}
                         <div className="mb-4">
-                          <h3 className="text-xl font-bold text-gray-900 mb-1 flex items-start gap-2">
-                            {affiliate.organizationName}
+                          <h3 className="text-xl font-bold text-gray-900 mb-1 flex items-start gap-2 break-words">
+                            <span className="break-words">{affiliate.organizationName}</span>
                             {affiliate.isCoOwner && (
-                              <span className="text-accent text-2xl leading-none" title="Co-owner">*</span>
+                              <span className="text-accent text-2xl leading-none flex-shrink-0" title="Co-owner">*</span>
                             )}
                           </h3>
                         </div>
