@@ -1,4 +1,5 @@
 import Hero from '@/components/sections/Hero'
+import MissionStatement from '@/components/sections/MissionStatement'
 import ServicesGrid from '@/components/sections/ServicesGrid'
 import NewsSection from '@/components/sections/NewsSection'
 import PartnersSection from '@/components/sections/PartnersSection'
@@ -16,10 +17,16 @@ export default async function HomePage() {
       {/* Hero Section */}
       <Hero />
 
-      {/* Services Section */}
-      {data.services && data.services.length > 0 && (
-        <ServicesGrid services={data.services} showAll={false} />
-      )}
+      {/* Continuous Gradient Background Section */}
+      <div className="bg-gradient-to-b from-white via-blue-50/40 to-blue-100/70">
+        {/* Mission Statement Section */}
+        <MissionStatement />
+
+        {/* Services Section */}
+        {data.services && data.services.length > 0 && (
+          <ServicesGrid services={data.services} showAll={false} />
+        )}
+      </div>
 
       {/* News Section */}
       {data.featuredNews && data.featuredNews.length > 0 && (

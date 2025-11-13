@@ -1,17 +1,7 @@
 import Container from '@/components/ui/Container'
-import ServiceCard from '@/components/content/ServiceCard'
-import Button from '@/components/ui/Button'
 import Link from 'next/link'
-import { Service } from '@/lib/types'
 
-interface ServicesGridProps {
-  services: Service[]
-  showAll?: boolean
-}
-
-export default function ServicesGrid({ services, showAll = true }: ServicesGridProps) {
-  const displayServices = showAll ? services : services.slice(0, 6)
-
+export default function FeaturedServices() {
   const featuredServices = [
     {
       title: 'Business Strategy',
@@ -46,16 +36,8 @@ export default function ServicesGrid({ services, showAll = true }: ServicesGridP
   ]
 
   return (
-    <section className="pt-8 pb-16 sm:pb-20 md:pb-24 lg:pb-28">
+    <section className="section bg-white">
       <Container>
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Featured Solutions
-          </h2>
-        </div>
-
-        {/* Featured Service Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {featuredServices.map((service, index) => (
             <Link

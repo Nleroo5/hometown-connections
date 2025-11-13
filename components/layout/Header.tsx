@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
+import ContactFormModal from '@/components/modals/ContactFormModal'
 import { urlFor } from '@/lib/sanity.client'
 
 interface NavigationItem {
@@ -32,7 +33,7 @@ const navigation: NavigationItem[] = [
   },
   {
     name: 'Utility Solutions',
-    href: '/services',
+    href: '#',
     submenu: [
       { name: 'Advanced Metering Infrastructure', href: '/services/ami' },
       { name: 'Strategic Planning', href: '/services/strategic-planning' },
@@ -54,6 +55,7 @@ export default function Header({ siteSettings }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null)
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,29 +73,29 @@ export default function Header({ siteSettings }: HeaderProps) {
       }`}
     >
       <Container>
-        <nav className="flex items-center justify-between py-4">
+        <nav className="flex items-center justify-between py-3 gap-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
+          <Link href="/" className="flex items-center space-x-3 group flex-shrink-0">
             {siteSettings?.logo ? (
-              <div className="relative py-3">
+              <div className="relative py-2">
                 <Image
                   src={urlFor(siteSettings.logo).width(400).height(120).url()}
                   alt={siteSettings.siteName || 'Hometown Connections'}
                   width={400}
                   height={120}
-                  className="h-20 w-auto object-contain"
+                  className="h-14 w-auto object-contain"
                 />
               </div>
             ) : (
               <>
-                <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center transition-all group-hover:shadow-lg group-hover:shadow-secondary/30">
-                  <span className="text-white font-bold text-xl">HC</span>
+                <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center transition-all group-hover:shadow-lg group-hover:shadow-secondary/30">
+                  <span className="text-white font-bold text-lg">HC</span>
                 </div>
                 <div className="hidden sm:block">
-                  <div className="text-xl font-bold text-white">
+                  <div className="text-lg font-bold text-white">
                     {siteSettings?.siteName || 'Hometown Connections'}
                   </div>
-                  <div className="text-sm text-gray-300">
+                  <div className="text-xs text-gray-300">
                     {siteSettings?.tagline || 'Empowering Community Utilities'}
                   </div>
                 </div>
@@ -102,18 +104,18 @@ export default function Header({ siteSettings }: HeaderProps) {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1">
+          <div className="hidden lg:flex items-center gap-0.5 flex-1 justify-center">
             {navigation.map((item) => (
               <div key={item.name} className="relative group">
                 {item.submenu ? (
                   <>
                     <button
-                      className="px-4 py-2 text-white hover:text-secondary transition-colors font-medium flex items-center gap-1"
+                      className="px-3 py-2 text-white hover:text-secondary transition-colors font-medium flex items-center gap-1 text-sm whitespace-nowrap"
                       onMouseEnter={() => setOpenSubmenu(item.name)}
                     >
                       {item.name}
                       <svg
-                        className="w-4 h-4"
+                        className="w-3 h-3"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -127,7 +129,7 @@ export default function Header({ siteSettings }: HeaderProps) {
                       </svg>
                     </button>
                     <div
-                      className="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-secondary/20"
+                      className="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-secondary/20 z-50"
                       onMouseLeave={() => setOpenSubmenu(null)}
                     >
                       {item.submenu.map((subItem) => (
@@ -144,7 +146,7 @@ export default function Header({ siteSettings }: HeaderProps) {
                 ) : (
                   <Link
                     href={item.href}
-                    className="px-4 py-2 text-white hover:text-secondary transition-colors font-medium"
+                    className="px-3 py-2 text-white hover:text-secondary transition-colors font-medium text-sm whitespace-nowrap"
                   >
                     {item.name}
                   </Link>
@@ -154,9 +156,13 @@ export default function Header({ siteSettings }: HeaderProps) {
           </div>
 
           {/* CTA Button (Desktop) */}
-          <div className="hidden lg:block">
-            <Button href="/contact" size="sm" variant="accent">
-              Get Started
+          <div className="hidden lg:block flex-shrink-0">
+            <Button
+              onClick={() => setIsContactModalOpen(true)}
+              size="sm"
+              variant="accent"
+            >
+              Request Consultation
             </Button>
           </div>
 
@@ -260,14 +266,27 @@ export default function Header({ siteSettings }: HeaderProps) {
                 </div>
               ))}
               <div className="pt-4">
-                <Button href="/contact" fullWidth variant="accent">
-                  Get Started
+                <Button
+                  onClick={() => {
+                    setIsContactModalOpen(true)
+                    setMobileMenuOpen(false)
+                  }}
+                  fullWidth
+                  variant="accent"
+                >
+                  Request Consultation
                 </Button>
               </div>
             </div>
           </Container>
         </div>
       )}
+
+      {/* Contact Form Modal */}
+      <ContactFormModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
     </header>
   )
 }

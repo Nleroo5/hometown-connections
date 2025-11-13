@@ -1,136 +1,68 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
+import { z } from 'zod'
 
-interface ContactFormData {
-  name: string
-  organization: string
-  email: string
-  phone?: string
-  serviceInterest?: string
-  message: string
-  newsletter?: boolean
-}
+// Form validation schema
+const contactSchema = z.object({
+  name: z.string().min(2),
+  title: z.string().min(2).optional(),
+  organization: z.string().min(2),
+  city: z.string().min(2).optional(),
+  state: z.string().min(1).optional(),
+  phone: z.string(),
+  email: z.string().email(),
+  contactMethod: z.enum(['phone', 'email']).optional(),
+  subject: z.string().min(3).optional(),
+  message: z.string().min(10),
+  captcha: z.boolean().optional(),
+})
 
-export async function POST(req: NextRequest) {
+export async function POST(request: Request) {
   try {
-    const body: ContactFormData = await req.json()
+    const body = await request.json()
 
-    // Validate required fields
-    if (!body.name || !body.organization || !body.email || !body.message) {
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      )
-    }
+    // Validate the request body
+    const validatedData = contactSchema.parse(body)
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(body.email)) {
-      return NextResponse.json(
-        { error: 'Invalid email address' },
-        { status: 400 }
-      )
-    }
+    // TODO: Implement your email service here
+    // Options:
+    // 1. Send email via SendGrid, Resend, AWS SES
+    // 2. Save to database
+    // 3. Send to CRM (HubSpot, Salesforce)
+    // 4. Save to Sanity CMS
 
-    // Here you would typically:
-    // 1. Send email using a service like SendGrid, Resend, or Nodemailer
-    // 2. Save to database or CRM
-    // 3. Send to Firebase, Airtable, or other backend
+    // For now, we'll just log the data
+    console.log('Contact form submission:', validatedData)
 
-    // For now, just log the submission
-    console.log('Contact form submission:', body)
+    // Simulate email sending delay
+    await new Promise((resolve) => setTimeout(resolve, 1000))
 
-    // Example: Send to an email service
-    // await sendEmail({
-    //   to: process.env.CONTACT_EMAIL,
-    //   from: body.email,
-    //   subject: `New Contact Form Submission from ${body.name}`,
-    //   html: generateEmailHTML(body),
-    // })
-
-    // Example: Save to Firebase
-    // await firebaseDB.collection('contacts').add({
-    //   ...body,
-    //   timestamp: new Date(),
-    // })
-
+    // Return success response
     return NextResponse.json(
       {
         success: true,
-        message: 'Thank you for your message. We will get back to you soon!',
+        message: 'Form submitted successfully',
       },
       { status: 200 }
     )
   } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Validation error',
+          errors: error.errors,
+        },
+        { status: 400 }
+      )
+    }
+
     console.error('Contact form error:', error)
     return NextResponse.json(
       {
-        error: 'Failed to submit form',
-        message: error instanceof Error ? error.message : 'Unknown error',
+        success: false,
+        message: 'An error occurred while processing your request',
       },
       { status: 500 }
     )
   }
-}
-
-// Helper function to generate email HTML
-function generateEmailHTML(data: ContactFormData): string {
-  return `
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <style>
-          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-          .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-          .header { background: #003E6B; color: white; padding: 20px; text-align: center; }
-          .content { background: #f9f9f9; padding: 20px; }
-          .field { margin-bottom: 15px; }
-          .label { font-weight: bold; color: #003E6B; }
-          .value { margin-top: 5px; }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <div class="header">
-            <h1>New Contact Form Submission</h1>
-          </div>
-          <div class="content">
-            <div class="field">
-              <div class="label">Name:</div>
-              <div class="value">${data.name}</div>
-            </div>
-            <div class="field">
-              <div class="label">Organization:</div>
-              <div class="value">${data.organization}</div>
-            </div>
-            <div class="field">
-              <div class="label">Email:</div>
-              <div class="value">${data.email}</div>
-            </div>
-            ${data.phone ? `
-              <div class="field">
-                <div class="label">Phone:</div>
-                <div class="value">${data.phone}</div>
-              </div>
-            ` : ''}
-            ${data.serviceInterest ? `
-              <div class="field">
-                <div class="label">Service Interest:</div>
-                <div class="value">${data.serviceInterest}</div>
-              </div>
-            ` : ''}
-            <div class="field">
-              <div class="label">Message:</div>
-              <div class="value">${data.message}</div>
-            </div>
-            ${data.newsletter ? `
-              <div class="field">
-                <div class="label">Newsletter Subscription:</div>
-                <div class="value">Yes</div>
-              </div>
-            ` : ''}
-          </div>
-        </div>
-      </body>
-    </html>
-  `
 }
