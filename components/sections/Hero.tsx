@@ -169,7 +169,7 @@ export default function Hero({
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 md:gap-12 pt-8">
+          <div className="flex flex-wrap justify-center gap-8 sm:gap-12 md:gap-16 pt-8">
             {stats.map((stat, index) => {
               // Determine if this stat should have counting animation
               const isUtilitiesServed = stat.label === 'Utilities Served'

@@ -27,12 +27,12 @@ export default function NewsGrid({ posts }: NewsGridProps) {
         >
           {/* Featured Image */}
           {post.featuredImage && (
-            <div className="relative h-48 bg-gray-200 overflow-hidden">
+            <div className="relative h-48 bg-gray-50 overflow-hidden">
               <Image
                 src={urlFor(post.featuredImage).width(600).height(400).url()}
                 alt={post.featuredImage.alt || post.title}
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                className="object-contain group-hover:scale-105 transition-transform duration-300"
               />
             </div>
           )}
