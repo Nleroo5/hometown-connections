@@ -20,7 +20,6 @@ const footerLinks = {
   resources: [
     { name: 'News', href: '/news' },
     { name: 'Partners', href: '/partners' },
-    { name: 'Contact', href: '/contact' },
   ],
 }
 
