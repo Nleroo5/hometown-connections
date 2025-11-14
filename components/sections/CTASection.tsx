@@ -19,7 +19,7 @@ export default function CTASection({
   title = 'Ready to Transform Your Utility Operations?',
   description = 'Join hundreds of community-owned utilities leveraging our expertise and partnerships to drive innovation and excellence.',
   primaryCTA = { text: 'Contact Us', href: '/contact' },
-  secondaryCTA = { text: 'Explore Services', href: '/services' },
+  secondaryCTA,
   variant = 'primary',
 }: CTASectionProps) {
   const bgClass = variant === 'primary' ? 'bg-gradient-primary' : 'bg-gradient-secondary'

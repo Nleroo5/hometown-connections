@@ -12,10 +12,10 @@ const footerLinks = {
     { name: 'Careers', href: '/careers' },
   ],
   services: [
-    { name: 'Business Strategy', href: '/services#business-strategy' },
-    { name: 'Operations', href: '/services#operations' },
-    { name: 'Cybersecurity', href: '/services#cybersecurity' },
-    { name: 'Customer Care', href: '/services#customer-care' },
+    { name: 'Business Strategy', href: '/services/business-strategy' },
+    { name: 'Operations', href: '/services/operations' },
+    { name: 'Cybersecurity', href: '/services/cybersecurity' },
+    { name: 'Customer Care', href: '/services/customer-care' },
   ],
   resources: [
     { name: 'Resource Library', href: '/resources' },

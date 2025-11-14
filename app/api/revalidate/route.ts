@@ -27,10 +27,10 @@ export async function POST(req: NextRequest) {
         break
 
       case 'service':
-        revalidatePath('/services')
         if (slug?.current) {
           revalidatePath(`/services/${slug.current}`)
         }
+        revalidatePath('/') // Revalidate homepage when services change
         break
 
       case 'partner':

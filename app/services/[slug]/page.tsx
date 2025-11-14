@@ -93,9 +93,7 @@ export default async function ServicePage({ params }: Props) {
                 Home
               </Link>
               <span>/</span>
-              <Link href="/services" className="hover:text-secondary transition-colors">
-                Services
-              </Link>
+              <span className="text-white">Utility Solutions</span>
               <span>/</span>
               <span className="text-white">{service.title}</span>
             </div>
@@ -228,15 +226,9 @@ export default async function ServicePage({ params }: Props) {
                 </p>
                 <a
                   href="/contact"
-                  className="block w-full bg-white text-primary text-center px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors mb-4 shadow-md"
+                  className="block w-full bg-white text-primary text-center px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors shadow-md"
                 >
                   Contact Us
-                </a>
-                <a
-                  href="/services"
-                  className="block w-full bg-primary/20 backdrop-blur-sm border-2 border-white text-white text-center px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors"
-                >
-                  View All Services
                 </a>
               </div>
             </div>

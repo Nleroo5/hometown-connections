@@ -41,12 +41,6 @@ export default function NotFound() {
                 </h2>
                 <div className="flex flex-wrap justify-center gap-4">
                   <Link
-                    href="/services"
-                    className="text-primary hover:text-primary-dark underline"
-                  >
-                    Our Services
-                  </Link>
-                  <Link
                     href="/about"
                     className="text-primary hover:text-primary-dark underline"
                   >
@@ -59,10 +53,16 @@ export default function NotFound() {
                     Partners
                   </Link>
                   <Link
-                    href="/resources"
+                    href="/news"
                     className="text-primary hover:text-primary-dark underline"
                   >
-                    Resources
+                    News
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className="text-primary hover:text-primary-dark underline"
+                  >
+                    Contact
                   </Link>
                 </div>
               </div>
