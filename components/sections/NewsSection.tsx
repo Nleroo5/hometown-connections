@@ -14,7 +14,7 @@ export default function NewsSection({ posts }: NewsSectionProps) {
         {/* Section Header */}
         <div className="flex items-end justify-between mb-12">
           <div className="max-w-2xl">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Latest News & Updates
             </h2>
             <p className="text-xl text-gray-600">

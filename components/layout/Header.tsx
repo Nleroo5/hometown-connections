@@ -168,7 +168,7 @@ export default function Header({ siteSettings }: HeaderProps) {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 text-white hover:text-secondary"
+            className="lg:hidden p-3 text-white hover:text-secondary min-w-[44px] min-h-[44px] flex items-center justify-center"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -215,7 +215,7 @@ export default function Header({ siteSettings }: HeaderProps) {
                   {item.submenu ? (
                     <>
                       <button
-                        className="w-full text-left px-4 py-2 text-white hover:bg-secondary/10 hover:text-secondary rounded-lg font-medium flex items-center justify-between"
+                        className="w-full text-left px-4 py-3 text-white hover:bg-secondary/10 hover:text-secondary rounded-lg font-medium flex items-center justify-between min-h-[44px]"
                         onClick={() =>
                           setOpenSubmenu(
                             openSubmenu === item.name ? null : item.name
@@ -245,7 +245,7 @@ export default function Header({ siteSettings }: HeaderProps) {
                             <Link
                               key={subItem.name}
                               href={subItem.href}
-                              className="block px-4 py-2 text-gray-300 hover:bg-secondary/10 hover:text-secondary rounded-lg"
+                              className="block px-4 py-3 text-gray-300 hover:bg-secondary/10 hover:text-secondary rounded-lg min-h-[44px] flex items-center"
                               onClick={() => setMobileMenuOpen(false)}
                             >
                               {subItem.name}

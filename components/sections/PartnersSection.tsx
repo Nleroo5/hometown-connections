@@ -20,7 +20,7 @@ export default function PartnersSection({ partners }: PartnersSectionProps) {
       <Container>
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Trusted by Industry Leaders
           </h2>
           <p className="text-xl text-gray-600">

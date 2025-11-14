@@ -43,7 +43,7 @@ export default async function NewsPage({ searchParams }: NewsPageProps) {
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
         <Container className="relative">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
               News & Updates
             </h1>
             <p className="text-xl text-white/90">

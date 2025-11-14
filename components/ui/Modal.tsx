@@ -44,7 +44,7 @@ const Modal: React.FC<ModalProps> = ({
 
         {/* Modal Container */}
         <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4 text-center">
+          <div className="flex min-h-full items-center justify-center p-3 sm:p-4 text-center">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -55,13 +55,13 @@ const Modal: React.FC<ModalProps> = ({
               leaveTo="opacity-0 scale-95 translate-y-4"
             >
               <Dialog.Panel
-                className={`w-full ${maxWidthClasses[maxWidth]} transform overflow-hidden rounded-2xl bg-white p-8 text-left align-middle shadow-2xl transition-all`}
+                className={`w-full ${maxWidthClasses[maxWidth]} transform overflow-hidden rounded-xl sm:rounded-2xl bg-white p-4 sm:p-6 md:p-8 text-left align-middle shadow-2xl transition-all`}
               >
                 {/* Header */}
-                <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center justify-between mb-4 sm:mb-6">
                   <Dialog.Title
                     as="h3"
-                    className="text-2xl font-bold text-gray-900"
+                    className="text-xl sm:text-2xl font-bold text-gray-900"
                   >
                     {title}
                   </Dialog.Title>

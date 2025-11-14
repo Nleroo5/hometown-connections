@@ -66,7 +66,7 @@ export default async function NewsPostPage({ params }: NewsPostPageProps) {
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
               {post.title}
             </h1>
 

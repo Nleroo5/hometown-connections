@@ -38,7 +38,7 @@ export default function CTASection({
 
       <Container className="relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">{title}</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white">{title}</h2>
           <p className="text-xl text-white mb-10 leading-relaxed">{description}</p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

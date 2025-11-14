@@ -50,7 +50,7 @@ export default function ServicesGrid({ services, showAll = true }: ServicesGridP
       <Container>
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Featured Solutions
           </h2>
         </div>

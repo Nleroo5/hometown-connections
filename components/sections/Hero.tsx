@@ -139,12 +139,12 @@ export default function Hero({
       <Container className="relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Main Heading */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in text-white">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in text-white">
             {title}
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-white mb-10 leading-relaxed animate-fade-in">
+          <p className="text-lg sm:text-xl md:text-2xl text-white mb-8 sm:mb-10 leading-relaxed animate-fade-in">
             {subtitle}
           </p>
 
@@ -181,7 +181,7 @@ export default function Hero({
                   className="text-center animate-fade-in"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="text-4xl md:text-5xl font-bold text-gradient-accent mb-2">
+                  <div className="text-3xl sm:text-3xl sm:text-4xl md:text-5xl font-bold text-gradient-accent mb-2">
                     {isUtilitiesServed ? (
                       <CountUp end={900} duration={5000} suffix="+" />
                     ) : isYearsOfExcellence ? (
