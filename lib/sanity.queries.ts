@@ -251,10 +251,6 @@ export async function getAllNews() {
   return await client.fetch(NEWS_QUERY)
 }
 
-export async function getNewsPost(slug: string) {
-  return await client.fetch(NEWS_POST_QUERY, { slug })
-}
-
 export async function getAllServices() {
   return await client.fetch(SERVICES_QUERY)
 }
@@ -289,4 +285,117 @@ export async function getTeamMembers() {
 
 export async function getBoardMembers() {
   return await client.fetch(BOARD_QUERY)
+}
+
+// News Queries
+const NEWS_POST_FIELDS = `
+  _id,
+  title,
+  slug,
+  category,
+  publishedAt,
+  featured,
+  excerpt,
+  featuredImage {
+    asset->{
+      _id,
+      url
+    },
+    alt
+  },
+  utilitySolutions,
+  relatedPartners[]->{
+    _id,
+    companyName,
+    slug
+  },
+  author->{
+    _id,
+    name,
+    role,
+    image {
+      asset->{
+        _id,
+        url
+      },
+      alt
+    }
+  }
+`
+
+export async function getAllNewsPosts(params?: {
+  page?: number
+  perPage?: number
+  utilitySolution?: string
+  partner?: string
+}) {
+  const page = params?.page || 1
+  const perPage = params?.perPage || 10
+  const offset = (page - 1) * perPage
+
+  // Build filter conditions
+  let filterConditions = `_type == "newsPost"`
+
+  if (params?.utilitySolution) {
+    filterConditions += ` && "${params.utilitySolution}" in utilitySolutions`
+  }
+
+  if (params?.partner) {
+    filterConditions += ` && references(*[_type == "partner" && slug.current == "${params.partner}"]._id)`
+  }
+
+  const query = `{
+    "posts": *[${filterConditions}] | order(publishedAt desc) [${offset}...${offset + perPage}] {
+      ${NEWS_POST_FIELDS}
+    },
+    "totalPosts": count(*[${filterConditions}])
+  }`
+
+  const result = await client.fetch(query)
+
+  return {
+    posts: result.posts,
+    totalPosts: result.totalPosts,
+    totalPages: Math.ceil(result.totalPosts / perPage),
+    currentPage: page,
+    hasNextPage: page * perPage < result.totalPosts,
+    hasPrevPage: page > 1,
+  }
+}
+
+export async function getNewsPost(slug: string) {
+  const query = `*[_type == "newsPost" && slug.current == $slug][0] {
+    ${NEWS_POST_FIELDS},
+    body,
+    relatedServices[]->{
+      _id,
+      title,
+      slug,
+      shortDescription,
+      icon {
+        asset->{
+          _id,
+          url
+        },
+        alt
+      }
+    },
+    seoTitle,
+    seoDescription
+  }`
+
+  return await client.fetch(query, { slug })
+}
+
+export async function getNewsFiltersData() {
+  const query = `{
+    "utilitySolutions": array::unique(*[_type == "newsPost" && defined(utilitySolutions)].utilitySolutions[]),
+    "partners": *[_type == "partner" && _id in *[_type == "newsPost"].relatedPartners[]._ref] {
+      _id,
+      companyName,
+      slug
+    } | order(companyName asc)
+  }`
+
+  return await client.fetch(query)
 }

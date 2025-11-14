@@ -30,7 +30,6 @@ export default function Hero({
   stats = [
     { value: '900+', label: 'Utilities Served' },
     { value: '25+', label: 'Years of Excellence' },
-    { value: '6', label: 'Owner Organizations' },
   ],
 }: HeroProps) {
   const svgRef = useRef<SVGSVGElement>(null)
@@ -77,7 +76,7 @@ export default function Hero({
   }, [])
 
   return (
-    <section className="relative bg-gradient-futuristic text-white pt-8 pb-20 sm:pt-12 md:pt-16 md:pb-28">
+    <section className="relative bg-gradient-futuristic text-white pt-20 pb-20 sm:pt-24 md:pt-32 md:pb-28">
       {/* Animated Grid with Power Flow */}
       {/* CSS Grid Background - 60px repeating pattern */}
       <div

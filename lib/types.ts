@@ -42,9 +42,26 @@ export interface NewsPost {
   featuredImage: SanityImage
   author?: TeamMember
   body?: any[]
+  utilitySolutions?: string[]
+  relatedPartners?: Partner[]
   relatedServices?: Service[]
   seoTitle?: string
   seoDescription?: string
+}
+
+export interface NewsFilters {
+  utilitySolution?: string
+  partner?: string
+  page?: number
+}
+
+export interface NewsPaginatedResponse {
+  posts: NewsPost[]
+  totalPosts: number
+  totalPages: number
+  currentPage: number
+  hasNextPage: boolean
+  hasPrevPage: boolean
 }
 
 export interface Service {
