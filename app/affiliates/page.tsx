@@ -270,7 +270,7 @@ export default async function AffiliatesPage() {
           </div>
           <Container className="relative z-10">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
                 Interested in Becoming an Affiliate?
               </h2>
               <p className="text-xl text-white mb-8">
@@ -286,12 +286,12 @@ export default async function AffiliatesPage() {
                   Contact Us
                 </Button>
                 <Button
-                  href="/about"
+                  href="/about/team"
                   variant="outline"
                   size="lg"
                   className="bg-white/10 hover:bg-white hover:text-primary border-white/50 hover:border-white backdrop-blur-sm"
                 >
-                  Learn More About Us
+                  Meet Our Team
                 </Button>
               </div>
             </div>

@@ -25,7 +25,7 @@ interface HeaderProps {
 const navigation: NavigationItem[] = [
   {
     name: 'We Are Hometown',
-    href: '/about',
+    href: '/about/team',
     submenu: [
       { name: 'Our Team', href: '/about/team' },
       { name: 'Board Members', href: '/about/board' },

@@ -26,7 +26,7 @@ export default function Hero({
   title = 'A Single Source For Community-Owned Utility Solutions',
   subtitle = 'Hometown Connections, Inc. is a national, non-profit utility services organization specializing in the unique challenges of community-owned utilities.',
   ctaPrimary = { text: 'View Our Affiliates', href: '/affiliates' },
-  ctaSecondary = { text: 'View Resources', href: '/resources' },
+  ctaSecondary = { text: 'Latest News', href: '/news' },
   stats = [
     { value: '900+', label: 'Utilities Served' },
     { value: '25+', label: 'Years of Excellence' },

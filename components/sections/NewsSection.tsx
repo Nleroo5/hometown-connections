@@ -22,7 +22,7 @@ export default function NewsSection({ posts }: NewsSectionProps) {
             </p>
           </div>
           <div className="hidden lg:block">
-            <Button href="/resources/news" variant="outline">
+            <Button href="/news" variant="outline">
               View All News
             </Button>
           </div>
@@ -37,7 +37,7 @@ export default function NewsSection({ posts }: NewsSectionProps) {
 
         {/* Mobile CTA */}
         <div className="text-center lg:hidden">
-          <Button href="/resources/news" variant="outline">
+          <Button href="/news" variant="outline">
             View All News
           </Button>
         </div>

@@ -32,7 +32,7 @@ export default function EventsSection({ events }: EventsSectionProps) {
         {/* Events Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
           {events.map((event) => (
-            <Link key={event._id} href={`/resources/events/${event.slug.current}`}>
+            <Link key={event._id} href={event.registrationLink || '#'}>
               <Card hover padding="none" className="h-full overflow-hidden">
                 {/* Featured Image */}
                 {event.featuredImage && (
@@ -139,12 +139,6 @@ export default function EventsSection({ events }: EventsSectionProps) {
           ))}
         </div>
 
-        {/* View All CTA */}
-        <div className="text-center">
-          <Button href="/resources/events" variant="outline">
-            View All Events
-          </Button>
-        </div>
       </Container>
     </section>
   )

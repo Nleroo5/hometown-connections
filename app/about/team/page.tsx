@@ -95,7 +95,7 @@ export default async function TeamPage() {
       <section className="py-16 bg-gray-50">
         <Container>
           <div className="bg-gradient-to-r from-primary to-primary/90 rounded-2xl p-12 text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">
+            <h2 className="text-3xl font-bold mb-4 text-white">
               Want to Work With Us?
             </h2>
             <p className="text-xl text-white mb-8 max-w-2xl mx-auto">

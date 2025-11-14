@@ -95,17 +95,17 @@ export default async function BoardPage() {
       <section className="py-16 bg-gray-50">
         <Container>
           <div className="bg-gradient-to-r from-primary to-primary/90 rounded-2xl p-12 text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">
+            <h2 className="text-3xl font-bold mb-4 text-white">
               Learn More About Hometown Connections
             </h2>
             <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
               Discover how our organization serves community-owned utilities across the nation with strategic solutions and partnerships.
             </p>
             <a
-              href="/about"
+              href="/about/team"
               className="inline-block bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
             >
-              About Us
+              Meet Our Team
             </a>
           </div>
         </Container>

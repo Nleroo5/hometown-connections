@@ -41,10 +41,10 @@ export default function NotFound() {
                 </h2>
                 <div className="flex flex-wrap justify-center gap-4">
                   <Link
-                    href="/about"
+                    href="/about/team"
                     className="text-primary hover:text-primary-dark underline"
                   >
-                    About Us
+                    Our Team
                   </Link>
                   <Link
                     href="/partners"

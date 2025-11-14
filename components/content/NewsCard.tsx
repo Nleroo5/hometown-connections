@@ -14,7 +14,7 @@ export default function NewsCard({ post }: NewsCardProps) {
   const readTime = post.body ? calculateReadTime(JSON.stringify(post.body)) : 5
 
   return (
-    <Link href={`/resources/news/${post.slug.current}`}>
+    <Link href={`/news/${post.slug.current}`}>
       <Card hover padding="none" className="h-full overflow-hidden">
         {/* Featured Image */}
         {post.featuredImage && (
