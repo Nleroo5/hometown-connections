@@ -6,10 +6,10 @@ import { urlFor } from '@/lib/sanity.client'
 
 const footerLinks = {
   company: [
-    { name: 'About Us', href: '/about' },
-    { name: 'Leadership', href: '/about/leadership' },
-    { name: 'Member Organizations', href: '/about/members' },
-    { name: 'Careers', href: '/careers' },
+    { name: 'Our Team', href: '/about/team' },
+    { name: 'Board Members', href: '/about/board' },
+    { name: 'Affiliates', href: '/affiliates' },
+    { name: 'Contact Us', href: '/contact' },
   ],
   services: [
     { name: 'Business Strategy', href: '/services/business-strategy' },
@@ -18,15 +18,9 @@ const footerLinks = {
     { name: 'Customer Care', href: '/services/customer-care' },
   ],
   resources: [
-    { name: 'Resource Library', href: '/resources' },
-    { name: 'News & Updates', href: '/resources/news' },
-    { name: 'Events', href: '/resources/events' },
-    { name: 'Contact Us', href: '/contact' },
-  ],
-  legal: [
-    { name: 'Privacy Policy', href: '/privacy' },
-    { name: 'Terms of Service', href: '/terms' },
-    { name: 'Accessibility', href: '/accessibility' },
+    { name: 'News', href: '/news' },
+    { name: 'Partners', href: '/partners' },
+    { name: 'Contact', href: '/contact' },
   ],
 }
 
@@ -205,22 +199,11 @@ export default async function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-secondary/20">
         <Container>
-          <div className="py-6 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-            <p className="text-white text-sm">
+          <div className="py-6 flex items-center justify-center">
+            <p className="text-white text-sm text-center">
               {settings?.copyrightText ||
                 `© ${new Date().getFullYear()} Hometown Connections, Inc. All rights reserved.`}
             </p>
-            <div className="flex space-x-6">
-              {footerLinks.legal.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-white hover:text-secondary text-sm transition-colors"
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </div>
           </div>
         </Container>
       </div>
